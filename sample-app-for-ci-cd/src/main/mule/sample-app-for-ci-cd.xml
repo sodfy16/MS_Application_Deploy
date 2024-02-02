@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<global-property doc:name="Global Property" doc:id="7f6439a7-ad87-460e-8a83-54acd4cfc0aa" name="env" value="dev" />
+	<configuration-properties doc:name="Configuration properties" doc:id="a22ba3b9-ede3-4465-89cd-afbe0ee884eb" file="config/${env}-config.yaml"/>
+	<flow name="sample-app-for-ci-cdFlow" doc:id="0608e8a3-d307-47c6-aae4-af7b8bf8b9af" >
+		<scheduler doc:name="Scheduler" doc:id="1b8726e7-c502-4a9c-b390-2d8962824caf" >
+			<scheduling-strategy >
+				<fixed-frequency timeUnit="DAYS"/>
+			</scheduling-strategy>
+		</scheduler>
+		<set-payload value="${logging.message}" doc:name="Set Payload" doc:id="47d6c3db-5add-4dd7-8ce1-c8cde8af1661" />
+		<logger level="INFO" doc:name="Logger" doc:id="9c90c759-1865-4040-aadf-84d1ee577454" message='#["\r\n***************" ++ payload]'/>
+	</flow>
+</mule>

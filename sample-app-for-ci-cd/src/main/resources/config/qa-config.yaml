@@ -1,0 +1,2 @@
+logging:
+  message: "This is DEV config"
