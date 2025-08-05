@@ -8,7 +8,7 @@
 	<flow name="sample-app-for-ci-cdFlow" doc:id="0608e8a3-d307-47c6-aae4-af7b8bf8b9af" >
 		<scheduler doc:name="Scheduler" doc:id="1b8726e7-c502-4a9c-b390-2d8962824caf" >
 			<scheduling-strategy >
-				<fixed-frequency timeUnit="DAYS"/>
+				<fixed-frequency timeUnit="DAYS" frequency="59996"/>
 			</scheduling-strategy>
 		</scheduler>
 		<set-payload value="${logging.message}" doc:name="Set Payload" doc:id="47d6c3db-5add-4dd7-8ce1-c8cde8af1661" />
