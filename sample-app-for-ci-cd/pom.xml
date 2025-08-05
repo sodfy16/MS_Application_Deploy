@@ -82,7 +82,7 @@
         </pluginRepository>
     </pluginRepositories>
 
-    <cloudhub2Deployment>
+    <!-- <cloudhub2Deployment>
         <uri>https://anypoint.mulesoft.com</uri>
         <provider>MC</provider>
         <environment>${environment}</environment>
@@ -100,7 +100,7 @@
         </secureProperties>
         <skipDeploymentVerification>true</skipDeploymentVerification>
         <deploymentSettings/>
-    </cloudhub2Deployment>
+    </cloudhub2Deployment> -->
 
     <distributionManagement>
     <repository>
