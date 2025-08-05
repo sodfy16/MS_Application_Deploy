@@ -44,7 +44,7 @@ jobs:
       - name: Publish to Exchange
         working-directory: './sample-app-for-ci-cd'
         run: |
-          mvn deploy -DskipMunitTests \
+          mvn deploy -X -DskipMunitTests \
           -DconnectedApp.clientId="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -DconnectedApp.clientSecret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
 
