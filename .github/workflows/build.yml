@@ -42,14 +42,16 @@ jobs:
           #   ]
 
       - name: Publish to Exchange
+        working-directory: './sample-app-for-ci-cd'
         run: |
           mvn deploy -DskipMunitTests \
           -DconnectedApp.clientId="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -DconnectedApp.clientSecret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
 
       - name: Deploy to CloudHub 2.0
+        working-directory: './sample-app-for-ci-cd'  
         run: |
-          mvn deploy -DskipMunitTests -DmuleDeploy \
-          -DconnectedApp.clientId=${{ secrets.CONNECTED_APP_CLIENT_ID }} \
-          -DconnectedApp.clientSecret=${{ secrets.CONNECTED_APP_CLIENT_SECRET }} \
-          -Dmule.env=dev
+            mvn deploy -DskipMunitTests -DmuleDeploy \
+            -DconnectedApp.clientId=${{ secrets.CONNECTED_APP_CLIENT_ID }} \
+            -DconnectedApp.clientSecret=${{ secrets.CONNECTED_APP_CLIENT_SECRET }} \
+            -Dmule.env=dev
