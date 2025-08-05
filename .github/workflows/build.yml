@@ -31,7 +31,7 @@ jobs:
         uses: s4u/maven-settings-action@v3.0.0
         with:
           # This flag ensures any existing settings.xml is completely replaced
-          override: true
+          override: false
           # servers: |
           #   [
           #     {
@@ -43,13 +43,13 @@ jobs:
 
       - name: Publish to Exchange
         run: |
-          mvn deploy --settings .maven/settings.xml -DskipMunitTests \
+          mvn deploy -DskipMunitTests \
           -DconnectedApp.clientId="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -DconnectedApp.clientSecret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
 
       - name: Deploy to CloudHub 2.0
         run: |
-          mvn deploy --settings .maven/settings.xml -DskipMunitTests -DmuleDeploy \
+          mvn deploy -DskipMunitTests -DmuleDeploy \
           -DconnectedApp.clientId=${{ secrets.CONNECTED_APP_CLIENT_ID }} \
           -DconnectedApp.clientSecret=${{ secrets.CONNECTED_APP_CLIENT_SECRET }} \
           -Dmule.env=dev
