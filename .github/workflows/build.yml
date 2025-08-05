@@ -8,7 +8,7 @@ on:
 jobs:         
   build:
     if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'develop'
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout this repo
         uses: actions/checkout@v4
