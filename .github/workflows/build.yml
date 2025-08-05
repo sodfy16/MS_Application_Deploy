@@ -26,6 +26,21 @@ jobs:
           distribution: "zulu"
           java-version: 17
 
+      # Create settings.xml for Maven authentication
+      - name: Create settings.xml
+        uses: s4u/maven-settings-action@v3.0.0
+        with:
+          # This flag ensures any existing settings.xml is completely replaced
+          override: true
+          # servers: |
+          #   [
+          #     {
+          #       "id": "anypoint-exchange-v3",
+          #       "username": "${{ secrets.USERNAME }}",
+          #       "password": "${{ secrets.PASSWORD }}"
+          #     }
+          #   ]
+
       - name: Publish to Exchange
         run: |
           mvn deploy --settings .maven/settings.xml -DskipMunitTests \
