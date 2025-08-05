@@ -1,2 +1,2 @@
 # MS_Application_Deploy
-DEMO
+DEMO - now editing the readme.
