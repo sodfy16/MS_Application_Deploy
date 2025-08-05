@@ -55,3 +55,4 @@ jobs:
             -DconnectedApp.clientId=${{ secrets.CONNECTED_APP_CLIENT_ID }} \
             -DconnectedApp.clientSecret=${{ secrets.CONNECTED_APP_CLIENT_SECRET }} \
             -Dmule.env=dev
+            -Dtarget=Cloudhub-US-East-2
