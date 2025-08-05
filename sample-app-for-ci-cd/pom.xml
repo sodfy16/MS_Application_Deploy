@@ -49,6 +49,12 @@
     </dependencies>
     
     <repositories>
+    <repository>
+        <id>Repository</id>
+        <name>Exchange2 Repository</name>
+        <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/7bbe4f7f-3c2a-4016-8a46-786188f3beef/maven</url>
+        <layout>default</layout>
+    </repository>
         <repository>
             <id>anypoint-exchange-v3</id>
             <name>Anypoint Exchange</name>
@@ -61,6 +67,7 @@
             <url>https://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repository>
+        
     </repositories>
     
     <pluginRepositories>
@@ -74,5 +81,34 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-    
+
+    <cloudhub2Deployment>
+        <uri>https://anypoint.mulesoft.com</uri>
+        <provider>MC</provider>
+        <environment>${environment}</environment>
+        <target>${target}</target>
+        <muleVersion>4.7.0</muleVersion>
+        <server>Repository</server>
+        <applicationName>wave-integration-cicd</applicationName>
+        <replicas>1</replicas>
+        <vCores>0.1</vCores>
+        <properties>
+            <env>${en}</env>
+        </properties>
+        <secureProperties>
+            <key>${secure_key}</key>
+        </secureProperties>
+        <skipDeploymentVerification>true</skipDeploymentVerification>
+        <deploymentSettings/>
+    </cloudhub2Deployment>
+
+    <distributionManagement>
+    <repository>
+        <id>Repository</id>
+        <name>CICD Repository</name>
+        <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/7bbe4f7f-3c2a-4016-8a46-786188f3beef/maven</url>
+        <layout>default</layout>
+    </repository>
+</distributionManagement>
+
 </project>
