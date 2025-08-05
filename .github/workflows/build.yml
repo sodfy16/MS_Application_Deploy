@@ -32,6 +32,7 @@ jobs:
         with:
           # This flag ensures any existing settings.xml is completely replaced
           override: false
+          githubServer: false
           # servers: |
           #   [
           #     {
