@@ -31,7 +31,7 @@ jobs:
         uses: s4u/maven-settings-action@v3.0.0
         with:
           # This flag ensures any existing settings.xml is completely replaced
-          override: false
+          override: true
           githubServer: false
           # servers: |
           #   [
