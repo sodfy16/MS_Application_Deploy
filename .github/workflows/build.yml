@@ -16,7 +16,15 @@ jobs:
       - name: Checkout this repo
         uses: actions/checkout@v4
 
-     # Create settings.xml with the correct configuration
+      # --- START: Added steps for cleanup and verification ---
+      - name: Clean up existing Maven settings
+        run: |
+          echo "Cleaning up ~/.m2 directory..."
+          rm -f ~/.m2/settings.xml
+          rm -f ~/.m2/settings-security.xml
+          ls -la ~/.m2/ || true # List contents, ignore if dir doesn't exist
+
+      # Create settings.xml with the correct configuration
       - name: Create settings.xml
         run: |
           mkdir -p ~/.m2
@@ -68,6 +76,14 @@ jobs:
             </activeProfiles>
           </settings>
           EOF
+
+      - name: Verify settings.xml content
+        run: |
+          echo "Contents of ~/.m2/settings.xml:"
+          cat ~/.m2/settings.xml
+          echo "Listing ~/.m2/ directory after creation:"
+          ls -la ~/.m2/
+      # --- END: Added steps for cleanup and verification ---
 
       - name: Cache dependencies
         uses: actions/cache@v4
