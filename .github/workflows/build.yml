@@ -87,7 +87,7 @@ jobs:
       - name: Publish to Exchange
         working-directory: './sample-app-for-ci-cd'
         run: |
-          mvn deploy -X --settings .maven/settings.xml -DskipMunitTests \
+          mvn deploy -X --settings ../.maven/settings.xml -DskipMunitTests \
           -DconnectedApp.clientId="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -Dbusiness.group.id=f57ddab8-f102-47ee-9a68-2754650997a5 \
           -DconnectedApp.clientSecret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
@@ -95,7 +95,7 @@ jobs:
       - name: Deploy to CloudHub 2.0
         working-directory: './sample-app-for-ci-cd'  
         run: |
-            mvn deploy --settings ./maven/settings.xml -DskipMunitTests -DmuleDeploy \
+            mvn deploy --settings ../.maven/settings.xml -DskipMunitTests -DmuleDeploy \
             -DconnectedApp.clientId=${{ secrets.CONNECTED_APP_CLIENT_ID }} \
             -Dbusiness.group.id=f57ddab8-f102-47ee-9a68-2754650997a5 \
             -DconnectedApp.clientSecret=${{ secrets.CONNECTED_APP_CLIENT_SECRET }} \
