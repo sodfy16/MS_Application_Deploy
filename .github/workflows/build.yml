@@ -101,9 +101,9 @@ jobs:
       - name: Publish to Exchange
         working-directory: './sample-app-for-ci-cd'
         run: |
-          mvn deploy -X -DskipMunitTests -Dbusiness.group.id=f57ddab8-f102-47ee-9a68-2754650997a5
+          mvn deploy -X -DskipMunitTests -Dbusiness.group.id=f57ddab8-f102-47ee-9a68-2754650997a5  --settings ~/.m2/settings.xml
 
       - name: Deploy to CloudHub 2.0
         working-directory: './sample-app-for-ci-cd'  
         run: |
-          mvn deploy -X -DskipMunitTests -DmuleDeploy -Dbusiness.group.id=f57ddab8-f102-47ee-9a68-2754650997a5
+          mvn deploy -X -DskipMunitTests -DmuleDeploy -Dbusiness.group.id=f57ddab8-f102-47ee-9a68-2754650997a5  --settings ~/.m2/settings.xml
