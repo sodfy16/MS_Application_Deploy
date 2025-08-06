@@ -28,6 +28,11 @@
                 <groupId>org.mule.tools.maven</groupId>
                 <artifactId>mule-maven-plugin</artifactId>
                 <version>${mule.maven.plugin.version}</version>
+                <configuration>
+                    <cloudHubDeployment>
+                    <businessGroupId>${business.group.id}</businessGroupId>
+                    </cloudHubDeployment>
+                </configuration>
                 <extensions>true</extensions>
             </plugin>
         </plugins>
