@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <groupId>com.mycompany</groupId>
+    <groupId>f57ddab8-f102-47ee-9a68-2754650997a5</groupId>
     <artifactId>sample-app-for-ci-cd</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>mule-application</packaging>
     
     <name>sample-app-for-ci-cd</name>
@@ -14,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         
         <app.runtime>4.5.3</app.runtime>
-        <mule.maven.plugin.version>4.0.0</mule.maven.plugin.version>
+        <mule.maven.plugin.version>4.1.1</mule.maven.plugin.version>
     </properties>
     
     <build>
@@ -28,12 +28,24 @@
                 <groupId>org.mule.tools.maven</groupId>
                 <artifactId>mule-maven-plugin</artifactId>
                 <version>${mule.maven.plugin.version}</version>
-                <configuration>
-                    <cloudHubDeployment>
-                    <businessGroupId>${business.group.id}</businessGroupId>
-                    </cloudHubDeployment>
-                </configuration>
                 <extensions>true</extensions>
+                <configuration>
+                    <classifier>mule-application</classifier>
+                    <cloudhub2Deployment>
+                        <uri>https://anypoint.mulesoft.com</uri>
+                        <provider>MC</provider>
+                        <environment>Sandbox</environment>
+                        <target>Cloudhub-US-East-2</target>
+                        <server>Repository</server>
+                        <applicationName>${project.artifactId}</applicationName>
+                        <releaseChannel>LTS</releaseChannel>
+                        <replicas>1</replicas>
+                        <vCores>0.1</vCores>
+                        <deploymentSettings>
+                            <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+                        </deploymentSettings>
+                    </cloudhub2Deployment>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -54,12 +66,6 @@
     </dependencies>
     
     <repositories>
-    <repository>
-        <id>Repository</id>
-        <name>Exchange2 Repository</name>
-        <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/7bbe4f7f-3c2a-4016-8a46-786188f3beef/maven</url>
-        <layout>default</layout>
-    </repository>
         <repository>
             <id>anypoint-exchange-v3</id>
             <name>Anypoint Exchange</name>
@@ -72,7 +78,12 @@
             <url>https://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
         </repository>
-        
+        <repository>
+            <id>Repository</id>
+            <name>Private Exchange repository</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
+            <layout>default</layout>
+        </repository>
     </repositories>
     
     <pluginRepositories>
@@ -86,32 +97,11 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
-    <!-- <cloudhub2Deployment>
-        <uri>https://anypoint.mulesoft.com</uri>
-        <provider>MC</provider>
-        <environment>${environment}</environment>
-        <target>${target}</target>
-        <muleVersion>4.7.0</muleVersion>
-        <server>Repository</server>
-        <applicationName>wave-integration-cicd</applicationName>
-        <replicas>1</replicas>
-        <vCores>0.1</vCores>
-        <properties>
-            <env>${en}</env>
-        </properties>
-        <secureProperties>
-            <key>${secure_key}</key>
-        </secureProperties>
-        <skipDeploymentVerification>true</skipDeploymentVerification>
-        <deploymentSettings/>
-    </cloudhub2Deployment> -->
-
-    <distributionManagement>
+<distributionManagement>
     <repository>
         <id>Repository</id>
-        <name>CICD Repository</name>
-        <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/7bbe4f7f-3c2a-4016-8a46-786188f3beef/maven</url>
+        <name>Corporate Repository</name>
+        <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
         <layout>default</layout>
     </repository>
 </distributionManagement>
